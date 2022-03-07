@@ -1,0 +1,12 @@
+{
+  "name": "calculator",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "cypress": "^9.4.1",
+    "typescript": "^4.5.5"
+  },
+  "scripts": {
+    "test": "cypress open"
+  }
+}
