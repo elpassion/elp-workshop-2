@@ -30,22 +30,6 @@ const App = () => {
     setCalc(initialCalc);
   };
 
-  const calculate = () => {
-    setCalc((calc) => {
-      if (!calc.left || !calc.operator || !calc.right || calc.result)
-        return calc;
-      switch (calc.operator) {
-        case Operator.Minus:
-          return { ...calc, result: calc.left - calc.right };
-        case Operator.Plus:
-          return { ...calc, result: calc.left + calc.right };
-        case Operator.Multiply:
-          return { ...calc, result: calc.left * calc.right };
-      }
-      return calc;
-    });
-  };
-
   const setOperator = (operator: Operator) => {
     setCalc((calc) => {
       if (result) return calc;
@@ -70,6 +54,21 @@ const App = () => {
   };
 
   const renderedValue = (result || right || operator || left || "0").toString();
+
+  const calculate = () => {
+    setCalc((calc) => {
+      if (!calc.left || !calc.operator || !calc.right || calc.result)
+        return calc;
+      switch (calc.operator) {
+        case Operator.Minus:
+          return { ...calc, result: calc.left - calc.right };
+        case Operator.Plus:
+          return { ...calc, result: calc.left + calc.right };
+        case Operator.Multiply:
+          return { ...calc, result: calc.left * calc.right };
+      }
+    });
+  };
 
   return (
     <Wrapper>
