@@ -1,13 +1,28 @@
-describe("addition", () => {
+function calculatorIsOpened() {
+  cy.visit("http://localhost:3000");
+}
+
+function add(left: number, right: number) {
+  cy.contains(left).click();
+  cy.contains("+").click();
+  cy.contains(right).click();
+  cy.contains("=").click();
+}
+
+function resultIs(result: number) {
+  cy.get(".screen").contains(result);
+}
+
+describe("calculator", () => {
   it("correctly adds integers", () => {
     // given
     calculatorIsOpened();
 
     // when
-    add(2, 2);
+    add(2, 3);
 
     // then
-    resultIs(4);
+    resultIs(5);
   });
 
   it("correctly subtracts integers", () => {
@@ -33,38 +48,16 @@ describe("addition", () => {
   });
 });
 
-function calculatorIsOpened() {
-  cy.visit("http://localhost:3000");
-  cy.get(".calculator").should("exist");
-}
-
-function add(left: number, right: number) {
-  cy.get(".buttonBox").within(() => {
-    cy.contains(left).click();
-    cy.contains("+").click();
-    cy.contains(right).click();
-    cy.contains("=").click();
-  });
-}
-
 function multiply(left: number, right: number) {
-  cy.get(".buttonBox").within(() => {
-    cy.contains(left).click();
-    cy.contains("*").click();
-    cy.contains(right).click();
-    cy.contains("=").click();
-  });
+  cy.contains(left).click();
+  cy.contains("*").click();
+  cy.contains(right).click();
+  cy.contains("=").click();
 }
 
 function subtract(left: number, right: number) {
-  cy.get(".buttonBox").within(() => {
-    cy.contains(left).click();
-    cy.contains("-").click();
-    cy.contains(right).click();
-    cy.contains("=").click();
-  });
-}
-
-function resultIs(result: number) {
-  cy.get(".screen").contains(result);
+  cy.contains(left).click();
+  cy.contains("-").click();
+  cy.contains(right).click();
+  cy.contains("=").click();
 }

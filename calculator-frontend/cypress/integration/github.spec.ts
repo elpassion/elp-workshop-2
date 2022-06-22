@@ -1,6 +1,5 @@
 describe("github", () => {
   it("returns user data for specified username", () => {
-    // given
     apiIsAvailable();
 
     // when
@@ -11,11 +10,13 @@ describe("github", () => {
   });
 });
 
-function getUser(username: string): any {
-  return cy.request("GET", `http://api.github.com/users/${username}`);
+function apiIsAvailable() {
+  // it's always available
 }
 
-function apiIsAvailable() {}
+function getUser(username: string): any {
+  return cy.request("GET", `https://api.github.com/users/${username}`);
+}
 
 async function idIs(request: any, id: number) {
   await request.then((response: any) => {

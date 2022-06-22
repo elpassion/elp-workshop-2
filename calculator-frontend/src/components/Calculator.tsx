@@ -10,6 +10,7 @@ import {
   Operator,
   OperatorButton,
 } from "./Button";
+import { logic } from "../logic";
 
 const App = () => {
   const initialCalc = {
@@ -61,11 +62,11 @@ const App = () => {
         return calc;
       switch (calc.operator) {
         case Operator.Minus:
-          return { ...calc, result: calc.left - calc.right };
+          return { ...calc, result: logic.subtract(calc.left, calc.right) };
         case Operator.Plus:
-          return { ...calc, result: calc.left + calc.right };
+          return { ...calc, result: logic.add(calc.left, calc.right) };
         case Operator.Multiply:
-          return { ...calc, result: calc.left * calc.right };
+          return { ...calc, result: logic.multiply(calc.left, calc.right) };
       }
     });
   };

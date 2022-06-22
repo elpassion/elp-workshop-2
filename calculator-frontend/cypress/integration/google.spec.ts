@@ -22,10 +22,12 @@ describe("google", () => {
   });
 });
 
-function browserIsOpened() {}
+function browserIsOpened() {
+  // always opened
+}
 
 function visitGoogle() {
-  cy.visit("http://google.com");
+  cy.visit("https://google.com");
   cy.contains("Zgadzam się").click();
 }
 
